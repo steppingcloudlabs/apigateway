@@ -1,5 +1,24 @@
-{"properties": [{
-  "name": "zuul.route.student.path",
-  "type": "java.lang.String",
-  "description": "A description for 'zuul.route.student.path'"
-}]}
+{
+  "properties": [
+    {
+      "name": "zuul.route.student.path",
+      "type": "java.lang.String",
+      "description": "A description for 'zuul.route.student.path'"
+    },
+    {
+      "name": "zuul.route.man.url",
+      "type": "java.lang.String",
+      "description": "A description for 'zuul.route.man.url'"
+    },
+    {
+      "name": "zuul.route.student.url",
+      "type": "java.lang.String",
+      "description": "A description for 'zuul.route.student.url'"
+    },
+    {
+      "name": "zuul.route.man.path",
+      "type": "java.lang.String",
+      "description": "A description for 'zuul.route.man.path'"
+    }
+  ]
+}
