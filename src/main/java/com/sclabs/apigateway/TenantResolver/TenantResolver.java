@@ -1,12 +1,9 @@
-package com.sclabs.apigateway.prefilter;
-
-import javax.servlet.http.HttpServletRequest;
+package com.sclabs.apigateway.TenantResolver;
 
 import com.netflix.zuul.ZuulFilter;
-import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 
-public class PreFilter extends ZuulFilter{
+public class TenantResolver extends ZuulFilter{
 
 	@Override
 	public boolean shouldFilter() {
@@ -17,11 +14,11 @@ public class PreFilter extends ZuulFilter{
 	@Override
 	public Object run() throws ZuulException {
 		// TODO Auto-generated method stub
-		RequestContext ctx = RequestContext.getCurrentContext();
-	    HttpServletRequest request = ctx.getRequest();
-	 
-	    System.out.println("Request Method : " + request + " Request URL : " + request.getRequestURL().toString());
-	    return null;
+		
+		TenantCredentialsFromAlpha fetcher = new TenantCredentialsFromAlpha();
+		String f = fetcher.test();
+		System.out.println(f);
+		return null;
 	}
 
 	@Override
@@ -33,8 +30,10 @@ public class PreFilter extends ZuulFilter{
 	@Override
 	public int filterOrder() {
 		// TODO Auto-generated method stub
-		return 1;
+		return 2;
 	}
+	
+	
 	
 
 }
