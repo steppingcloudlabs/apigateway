@@ -13,7 +13,7 @@ import com.sclabs.apigateway.TenantResolver.model.MasterModel;
 @Service
 public class MasterService {
 	private final MongoTemplate mongoTemplate;
-	
+
 	public MasterService(MongoTemplate mongoTemplate) {
 		super();
 		this.mongoTemplate = mongoTemplate;
@@ -25,4 +25,9 @@ public class MasterService {
 		return mongoTemplate.find(query, MasterModel.class);
 	}
 	
+	public MasterModel getTenantAccessDetails(String companyName) {
+		Query query = new Query()
+				.addCriteria(Criteria.where("company_name").is(companyName));
+		return mongoTemplate.findOne(query, MasterModel.class);
+	}
 }

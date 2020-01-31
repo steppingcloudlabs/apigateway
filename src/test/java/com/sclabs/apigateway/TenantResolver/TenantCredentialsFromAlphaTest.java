@@ -1,21 +1,19 @@
-package com.sclabs.apigateway.TenantResolver.repository;
+package com.sclabs.apigateway.TenantResolver;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.netflix.zuul.context.RequestContext;
 import com.sclabs.apigateway.TenantResolver.model.MasterModel;
+import com.sclabs.apigateway.TenantResolver.repository.MasterModelRepository;
 import com.sclabs.apigateway.TenantResolver.service.MasterService;
 
 @SpringBootTest
-class MasterModelRepositoryTest {
+class TenantCredentialsFromAlphaTest {
 
 	@Autowired
 	MasterModelRepository masterModelRepository;
@@ -24,13 +22,13 @@ class MasterModelRepositoryTest {
 	MasterService myMasterService;
 	
 	@Test
-	public void test() {
-		
-		
+	public void getCredentials() {
+		System.out.print(myMasterService);
 		List<MasterModel> duck = myMasterService.allTenantMasterModels();
 		for (MasterModel masterModel : duck) {
 			System.out.println(duck.toString());
 		}
 	}
 	
+
 }

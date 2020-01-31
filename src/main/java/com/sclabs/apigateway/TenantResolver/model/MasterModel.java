@@ -1,9 +1,12 @@
 package com.sclabs.apigateway.TenantResolver.model;
 
 
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +37,9 @@ public class MasterModel {
 	String master_password;
 	@DBRef
 	List<ObjectId> service_name;
+	
+	Gson gson=new Gson();
+	ObjectMapper Obj = new ObjectMapper(); 
 	public ObjectId getId() {
 		return Id;
 	}
@@ -106,13 +112,14 @@ public class MasterModel {
 	public void setService_name(List<ObjectId> service_name) {
 		this.service_name = service_name;
 	}
+	
 	@Override
 	public String toString() {
 		return "MasterModel [Id=" + Id + ", company_id=" + company_id + ", company_name=" + company_name
 				+ ", client_id=" + client_id + ", idp_url=" + idp_url + ", token_url=" + token_url + ", private_key="
 				+ private_key + ", grant_type=" + grant_type + ", company_admin_contact_email="
 				+ company_admin_contact_email + ", master_username=" + master_username + ", master_password="
-				+ master_password + ", service_name=" + service_name + "]";
+				+ master_password + ", service_name=" + service_name + ", gson=" + gson + ", Obj=" + Obj + "]";
 	}
 	@Override
 	public int hashCode() {
