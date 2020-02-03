@@ -17,18 +17,18 @@ class TenantCredentialsFromAlphaTest {
 
 	@Autowired
 	MasterModelRepository masterModelRepository;
-	
+
 	@Autowired
 	MasterService myMasterService;
-	
+
 	@Test
 	public void getCredentials() {
 		System.out.print(myMasterService);
 		List<MasterModel> duck = myMasterService.allTenantMasterModels();
+
 		for (MasterModel masterModel : duck) {
 			System.out.println(duck.toString());
 		}
 	}
-	
 
 }

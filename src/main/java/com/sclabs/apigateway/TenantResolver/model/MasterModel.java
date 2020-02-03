@@ -1,6 +1,5 @@
 package com.sclabs.apigateway.TenantResolver.model;
 
-
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -20,9 +19,9 @@ import org.springframework.data.annotation.Id;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
-@Document(collection="masters")
+@Document(collection = "masters")
 public class MasterModel {
-	
+
 	@Id
 	ObjectId Id;
 	String company_id;
@@ -37,90 +36,115 @@ public class MasterModel {
 	String master_password;
 	@DBRef
 	List<ObjectId> service_name;
-	
-	Gson gson=new Gson();
-	ObjectMapper Obj = new ObjectMapper(); 
+
+	Gson gson = new Gson();
+	ObjectMapper Obj = new ObjectMapper();
+
 	public ObjectId getId() {
 		return Id;
 	}
+
 	public void setId(ObjectId id) {
 		Id = id;
 	}
+
 	public String getCompany_id() {
 		return company_id;
 	}
+
 	public void setCompany_id(String company_id) {
 		this.company_id = company_id;
 	}
+
 	public String getCompany_name() {
 		return company_name;
 	}
+
 	public void setCompany_name(String company_name) {
 		this.company_name = company_name;
 	}
+
 	public String getClient_id() {
 		return client_id;
 	}
+
 	public void setClient_id(String client_id) {
 		this.client_id = client_id;
 	}
+
 	public String getIdp_url() {
 		return idp_url;
 	}
+
 	public void setIdp_url(String idp_url) {
 		this.idp_url = idp_url;
 	}
+
 	public String getToken_url() {
 		return token_url;
 	}
+
 	public void setToken_url(String token_url) {
 		this.token_url = token_url;
 	}
+
 	public String getPrivate_key() {
 		return private_key;
 	}
+
 	public void setPrivate_key(String private_key) {
 		this.private_key = private_key;
 	}
+
 	public String getGrant_type() {
 		return grant_type;
 	}
+
 	public void setGrant_type(String grant_type) {
 		this.grant_type = grant_type;
 	}
+
 	public String getCompany_admin_contact_email() {
 		return company_admin_contact_email;
 	}
+
 	public void setCompany_admin_contact_email(String company_admin_contact_email) {
 		this.company_admin_contact_email = company_admin_contact_email;
 	}
+
 	public String getMaster_username() {
 		return master_username;
 	}
+
 	public void setMaster_username(String master_username) {
 		this.master_username = master_username;
 	}
+
 	public String getMaster_password() {
 		return master_password;
 	}
+
 	public void setMaster_password(String master_password) {
 		this.master_password = master_password;
 	}
+
 	public List<ObjectId> getService_name() {
 		return service_name;
 	}
+
 	public void setService_name(List<ObjectId> service_name) {
 		this.service_name = service_name;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "MasterModel [Id=" + Id + ", company_id=" + company_id + ", company_name=" + company_name
 				+ ", client_id=" + client_id + ", idp_url=" + idp_url + ", token_url=" + token_url + ", private_key="
 				+ private_key + ", grant_type=" + grant_type + ", company_admin_contact_email="
 				+ company_admin_contact_email + ", master_username=" + master_username + ", master_password="
-				+ master_password + ", service_name=" + service_name + ", gson=" + gson + ", Obj=" + Obj + "]";
+				+ master_password + ", service_name=" + service_name;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -139,6 +163,7 @@ public class MasterModel {
 		result = prime * result + ((token_url == null) ? 0 : token_url.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -210,8 +235,5 @@ public class MasterModel {
 			return false;
 		return true;
 	}
-	
-	
-	
 
 }

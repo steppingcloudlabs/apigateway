@@ -2,7 +2,6 @@ package com.sclabs.apigateway.TenantResolver.service;
 
 import java.util.List;
 
-
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -17,17 +16,21 @@ public class MasterService {
 	public MasterService(MongoTemplate mongoTemplate) {
 		super();
 		this.mongoTemplate = mongoTemplate;
-		
+
 	}
-	public List<MasterModel> allTenantMasterModels(){
-		Query query = new Query()
-				.addCriteria(Criteria.where("company_name").is("salesdemo"));
+
+	// public List<MasterModel> allTenantMasterModels() {
+	// Query query = new
+	// Query().addCriteria(Criteria.where("company_name").is("salesdemo"));
+	// return mongoTemplate.find(query, MasterModel.class);
+	// }
+
+	public List<MasterModel> getTenantAccessDetails(String companyName) {
+		Query query = new Query().addCriteria(Criteria.where("company_name").is(companyName));
 		return mongoTemplate.find(query, MasterModel.class);
 	}
-	
-	public MasterModel getTenantAccessDetails(String companyName) {
-		Query query = new Query()
-				.addCriteria(Criteria.where("company_name").is(companyName));
-		return mongoTemplate.findOne(query, MasterModel.class);
+
+	public List<MasterModel> allTenantMasterModels(String companyname) {
+		return null;
 	}
 }

@@ -19,18 +19,17 @@ class MasterModelRepositoryTest {
 
 	@Autowired
 	MasterModelRepository masterModelRepository;
-	
+
 	@Autowired
 	MasterService myMasterService;
-	
+
 	@Test
 	public void test() {
-		
-		
-		List<MasterModel> duck = myMasterService.allTenantMasterModels();
-		for (MasterModel masterModel : duck) {
+
+		final List<MasterModel> duck = myMasterService.allTenantMasterModels(null);
+		for (final MasterModel masterModel : duck) {
 			System.out.println(duck.toString());
 		}
 	}
-	
+
 }
