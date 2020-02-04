@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.ObjectArrayDeserializer;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.google.gson.Gson;
 
 import com.fasterxml.jackson.annotation.*;
@@ -44,7 +45,8 @@ public class MasterModel {
 	Gson gson = new Gson();
 	ObjectMapper Obj = new ObjectMapper();
 
-	@JsonSerialize
+	@Id
+	@JsonSerialize(using = ToStringSerializer.class)
 	public ObjectId getId() {
 		return Id;
 	}
@@ -133,6 +135,7 @@ public class MasterModel {
 		this.master_password = master_password;
 	}
 
+	@JsonSerialize(using = ToStringSerializer.class)
 	public List<ObjectId> getService_name() {
 		return service_name;
 	}
