@@ -3,9 +3,13 @@ package com.sclabs.apigateway.TenantResolver.model;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.ObjectArrayDeserializer;
 import com.google.gson.Gson;
+
+import com.fasterxml.jackson.annotation.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,11 +44,12 @@ public class MasterModel {
 	Gson gson = new Gson();
 	ObjectMapper Obj = new ObjectMapper();
 
+	@JsonSerialize
 	public ObjectId getId() {
 		return Id;
 	}
 
-	public void setId(ObjectId id) {
+	public void setId(final ObjectId id) {
 		Id = id;
 	}
 
@@ -52,7 +57,7 @@ public class MasterModel {
 		return company_id;
 	}
 
-	public void setCompany_id(String company_id) {
+	public void setCompany_id(final String company_id) {
 		this.company_id = company_id;
 	}
 
@@ -60,7 +65,7 @@ public class MasterModel {
 		return company_name;
 	}
 
-	public void setCompany_name(String company_name) {
+	public void setCompany_name(final String company_name) {
 		this.company_name = company_name;
 	}
 
@@ -68,7 +73,7 @@ public class MasterModel {
 		return client_id;
 	}
 
-	public void setClient_id(String client_id) {
+	public void setClient_id(final String client_id) {
 		this.client_id = client_id;
 	}
 
@@ -76,7 +81,7 @@ public class MasterModel {
 		return idp_url;
 	}
 
-	public void setIdp_url(String idp_url) {
+	public void setIdp_url(final String idp_url) {
 		this.idp_url = idp_url;
 	}
 
@@ -84,7 +89,7 @@ public class MasterModel {
 		return token_url;
 	}
 
-	public void setToken_url(String token_url) {
+	public void setToken_url(final String token_url) {
 		this.token_url = token_url;
 	}
 
@@ -92,7 +97,7 @@ public class MasterModel {
 		return private_key;
 	}
 
-	public void setPrivate_key(String private_key) {
+	public void setPrivate_key(final String private_key) {
 		this.private_key = private_key;
 	}
 
@@ -100,7 +105,7 @@ public class MasterModel {
 		return grant_type;
 	}
 
-	public void setGrant_type(String grant_type) {
+	public void setGrant_type(final String grant_type) {
 		this.grant_type = grant_type;
 	}
 
@@ -108,7 +113,7 @@ public class MasterModel {
 		return company_admin_contact_email;
 	}
 
-	public void setCompany_admin_contact_email(String company_admin_contact_email) {
+	public void setCompany_admin_contact_email(final String company_admin_contact_email) {
 		this.company_admin_contact_email = company_admin_contact_email;
 	}
 
@@ -116,7 +121,7 @@ public class MasterModel {
 		return master_username;
 	}
 
-	public void setMaster_username(String master_username) {
+	public void setMaster_username(final String master_username) {
 		this.master_username = master_username;
 	}
 
@@ -124,7 +129,7 @@ public class MasterModel {
 		return master_password;
 	}
 
-	public void setMaster_password(String master_password) {
+	public void setMaster_password(final String master_password) {
 		this.master_password = master_password;
 	}
 
@@ -132,17 +137,25 @@ public class MasterModel {
 		return service_name;
 	}
 
-	public void setService_name(List<ObjectId> service_name) {
+	public void setService_name(final List<ObjectId> service_name) {
 		this.service_name = service_name;
 	}
 
+	// @Override
+	// public String toString() {
+	// return new com.google.gson.Gson().toJson(this);
+	// }
+
+	// Jackson libabry for JSON/YAML
 	@Override
 	public String toString() {
-		return "MasterModel [Id=" + Id + ", company_id=" + company_id + ", company_name=" + company_name
-				+ ", client_id=" + client_id + ", idp_url=" + idp_url + ", token_url=" + token_url + ", private_key="
-				+ private_key + ", grant_type=" + grant_type + ", company_admin_contact_email="
-				+ company_admin_contact_email + ", master_username=" + master_username + ", master_password="
-				+ master_password + ", service_name=" + service_name;
+		try {
+			return new com.fasterxml.jackson.databind.ObjectMapper().writerWithDefaultPrettyPrinter()
+					.writeValueAsString(this);
+		} catch (final com.fasterxml.jackson.core.JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
@@ -165,14 +178,14 @@ public class MasterModel {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MasterModel other = (MasterModel) obj;
+		final MasterModel other = (MasterModel) obj;
 		if (Id == null) {
 			if (other.Id != null)
 				return false;
