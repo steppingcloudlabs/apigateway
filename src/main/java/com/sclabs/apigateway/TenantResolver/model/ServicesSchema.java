@@ -4,6 +4,12 @@ import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
+import io.github.kaiso.relmongo.annotation.*;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
@@ -20,7 +26,37 @@ public class ServicesSchema {
 	@Id
 	String id;
 	String service_name;
-	@DBRef
+	@ManyToOne(mappedBy="service_name")
 	List<MasterModel> tenant_id;
+	
+	@JsonSerialize(using = ToStringSerializer.class)
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getService_name() {
+		return service_name;
+	}
+	public void setService_name(String service_name) {
+		this.service_name = service_name;
+	}
+	public List<MasterModel> getTenant_id() {
+		return tenant_id;
+	}
+	public void setTenant_id(List<MasterModel> tenant_id) {
+		this.tenant_id = tenant_id;
+	}
+	@Override
+	public String toString() {
+		try {
+			return new com.fasterxml.jackson.databind.ObjectMapper().writerWithDefaultPrettyPrinter()
+					.writeValueAsString(this);
+		} catch (final com.fasterxml.jackson.core.JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }

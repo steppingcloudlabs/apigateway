@@ -15,9 +15,12 @@ import com.sclabs.apigateway.postfilter.PostFilter;
 import com.sclabs.apigateway.prefilter.PreFilter;
 import com.sclabs.apigateway.routefilter.RouteFilter;
 
+import io.github.kaiso.relmongo.config.EnableRelationalMongo;
+
 
 @SpringBootApplication
 @EnableZuulProxy
+@EnableRelationalMongo
 public class ApigatewayApplication {
 	private static final Logger LOG = LoggerFactory.getLogger("SCLABS");
 

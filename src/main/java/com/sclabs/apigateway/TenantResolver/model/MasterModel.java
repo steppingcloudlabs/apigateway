@@ -4,19 +4,20 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.deser.std.ObjectArrayDeserializer;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import com.google.gson.Gson;
 
-import com.fasterxml.jackson.annotation.*;
+import io.github.kaiso.relmongo.annotation.CascadeType;
+import io.github.kaiso.relmongo.annotation.FetchType;
+import io.github.kaiso.relmongo.annotation.JoinProperty;
+import io.github.kaiso.relmongo.annotation.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -39,10 +40,11 @@ public class MasterModel {
 	String company_admin_contact_email;
 	String master_username;
 	String master_password;
-	@DBRef
+	
 	List<ObjectId> service_name;
+	
+	
 
-	Gson gson = new Gson();
 	ObjectMapper Obj = new ObjectMapper();
 
 	@Id
@@ -144,12 +146,7 @@ public class MasterModel {
 		this.service_name = service_name;
 	}
 
-	// @Override
-	// public String toString() {
-	// return new com.google.gson.Gson().toJson(this);
-	// }
-
-	// Jackson libabry for JSON/YAML
+	
 	@Override
 	public String toString() {
 		try {
