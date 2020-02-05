@@ -18,6 +18,7 @@ import com.sclabs.apigateway.TenantResolver.model.MasterModel;
 import com.sclabs.apigateway.TenantResolver.model.ServiceGodsModel;
 import com.sclabs.apigateway.TenantResolver.repository.MasterModelRepository;
 import com.sclabs.apigateway.TenantResolver.service.MasterService;
+import com.sclabs.apigateway.TenantResolver.service.ServiceGodsService;
 
 /*
  * This Class makes connection with Redis and Mongodb of Alpha's mongodb database.
@@ -31,6 +32,9 @@ public class TenantCredentialsFromAlpha {
 
 	@Autowired
 	MasterService myMasterService;
+	
+	@Autowired
+	ServiceGodsService serviceGodsService;
 
 	/**
 	 * This function expects company name as a string and returns the document with

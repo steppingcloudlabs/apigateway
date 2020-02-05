@@ -28,8 +28,4 @@ public class MasterService {
 		return mongoTemplate.find(query, MasterModel.class);
 	}
 	
-	
-	
-	
-	
 }
