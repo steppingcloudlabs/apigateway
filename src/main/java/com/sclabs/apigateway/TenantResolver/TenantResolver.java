@@ -33,9 +33,12 @@ public class TenantResolver extends ZuulFilter {
 		String companyName = request.getHeader("companyname");
 		String serviceName = request.getHeader("servicename");
 
-		List<ServiceGodsModel> duck2 = child.getService(serviceName, companyName);
-
-		System.out.println(duck2.get(0).getService());
+		List<MasterModel> tenantinfo = child.getTenant(companyName);
+		
+		ObjectId tenantId = tenantinfo.get(0).getId();
+		
+		List<ServiceGodsModel> duck2 = child.getService(tenantId, serviceName);
+	
 		System.out.println(duck2);
 
 		return null;

@@ -65,8 +65,8 @@ public class TenantCredentialsFromAlpha {
 	 * 
 	 * @return _id
 	 */
-	public List<ServiceGodsModel> getService(String serviceName2, String servicename) {
-		final List<ServiceGodsModel> tenant2 = serviceGodsService.getService(serviceName2, servicename);
+	public List<ServiceGodsModel> getService(ObjectId tenantId, String servicename) {
+		final List<ServiceGodsModel> tenant2 = serviceGodsService.getService(tenantId, servicename);
 		return tenant2;
 
 	}

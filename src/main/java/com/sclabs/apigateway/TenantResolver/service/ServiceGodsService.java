@@ -34,11 +34,9 @@ public class ServiceGodsService {
 	 * 
 	 * @return
 	 */
-	public List<ServiceGodsModel> getService(String serviceName2, String servicename) {
-		System.out.println(serviceName2);
-		System.out.println(servicename);
+	public List<ServiceGodsModel> getService(ObjectId tenantId, String servicename) {
 		
-		Query query = new Query().addCriteria(Criteria.where("company_oid").is("5e1c219dc3dcd5907d415139").andOperator(Criteria.where("service").is("alumniportal")));
+		Query query = new Query().addCriteria(Criteria.where("company_oid").is(tenantId.toString()).andOperator(Criteria.where("service").is(servicename)));
 		System.out.println(query);
 		return mongoTemplate.find(query, ServiceGodsModel.class);
 
