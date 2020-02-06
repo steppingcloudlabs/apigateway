@@ -20,7 +20,7 @@ import com.sclabs.apigateway.TenantResolver.model.ServiceGodsModel;
 
 @Service
 public class ServiceGodsService {
-	private final MongoTemplate mongoTemplate;
+	private MongoTemplate mongoTemplate;
 
 	public ServiceGodsService(MongoTemplate mongoTemplate) {
 		super();
