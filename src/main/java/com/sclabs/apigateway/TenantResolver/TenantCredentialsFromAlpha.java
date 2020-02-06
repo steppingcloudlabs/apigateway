@@ -32,7 +32,10 @@ public class TenantCredentialsFromAlpha {
 
 	@Autowired
 	MasterService myMasterService;
-	
+
+	@Autowired
+	ServiceGodsService serviceService;
+
 	@Autowired
 	ServiceGodsService serviceGodsService;
 
@@ -64,13 +67,14 @@ public class TenantCredentialsFromAlpha {
 		/**
 		 *
 		 */
-
-		return null;
+		final List<ServiceGodsModel> tenant2 = serviceService.getService();
+		return tenant2;
 
 	}
 
 	/**
 	 * This function fetch the credentials of serviceGods.
+	 * 
 	 * @param tenantid
 	 * @param serviceid
 	 * @return document

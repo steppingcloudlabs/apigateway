@@ -27,8 +27,5 @@ public class MasterService {
 		Query query = new Query().addCriteria(Criteria.where("company_name").is(companyName));
 		return mongoTemplate.find(query, MasterModel.class);
 	}
-	
-	
-	
-	
+
 }

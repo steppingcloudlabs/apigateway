@@ -8,6 +8,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import com.sclabs.apigateway.TenantResolver.model.MasterModel;
 import com.sclabs.apigateway.TenantResolver.model.ServiceGodsModel;
 
@@ -25,21 +27,22 @@ public class ServiceGodsService {
 		this.mongoTemplate = mongoTemplate;
 
 	}
-	
+
 	/**
 	 * THis function creates a map which
+	 * 
 	 * @return
 	 */
-	public ServiceGodsModel getService() {
-		
-		return null;
-		
+	public List<ServiceGodsModel> getService() {
+		Query query = new Query().addCriteria(Criteria.where("service_status").is(true));
+		return mongoTemplate.find(query, ServiceGodsModel.class);
+
 	}
+
 	public ServiceGodsModel getServiceCredentials(String tenantid, String serviceid) {
-		
+
 		return null;
-		
+
 	}
-	
-	
+
 }

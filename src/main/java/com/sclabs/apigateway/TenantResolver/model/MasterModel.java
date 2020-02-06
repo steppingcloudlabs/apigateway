@@ -40,10 +40,8 @@ public class MasterModel {
 	String company_admin_contact_email;
 	String master_username;
 	String master_password;
-	
+
 	List<ObjectId> service_name;
-	
-	
 
 	ObjectMapper Obj = new ObjectMapper();
 
@@ -146,7 +144,6 @@ public class MasterModel {
 		this.service_name = service_name;
 	}
 
-	
 	@Override
 	public String toString() {
 		try {

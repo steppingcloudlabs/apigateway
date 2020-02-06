@@ -10,6 +10,7 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import com.sclabs.apigateway.TenantResolver.model.MasterModel;
+import com.sclabs.apigateway.TenantResolver.model.ServiceGodsModel;
 
 public class TenantResolver extends ZuulFilter {
 
@@ -32,9 +33,11 @@ public class TenantResolver extends ZuulFilter {
 		String serviceName = request.getHeader("servicename");
 
 		List<MasterModel> duck = child.getTenant(companyName);
-		
+		List<ServiceGodsModel> duck2 = child.getService();
+
 		System.out.println(duck.get(0).getService_name());
-		
+		System.out.println(duck2);
+
 		return null;
 	}
 
