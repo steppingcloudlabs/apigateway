@@ -22,6 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
 @Document(collection = "services")
+
 public class ServicesSchema {
 
 	@Id

@@ -21,13 +21,20 @@ public class ServiceGodsModel {
 	@Id
 	ObjectId Id;
 	@DBRef
-	List<String> service;
-	@DBRef
-	List<ObjectId> company_oid;
+	String service;
+	ObjectId company_oid;
 	String username;
 	String password;
 	Boolean service_status;
-	@DBRef
+	String company_id;
+	public String getCompany_id() {
+		return company_id;
+	}
+
+	public void setCompany_id(String company_id) {
+		this.company_id = company_id;
+	}
+
 	List<ObjectId> user_role;
 
 	@Id
@@ -41,20 +48,20 @@ public class ServiceGodsModel {
 	}
 
 	@JsonSerialize(using = ToStringSerializer.class)
-	public List<String> getService() {
+	public String getService() {
 		return service;
 	}
 
-	public void setService(final List<String> service) {
+	public void setService(final String service) {
 		this.service = service;
 	}
 
 	@JsonSerialize(using = ToStringSerializer.class)
-	public List<ObjectId> getCompany() {
+	public ObjectId getCompany() {
 		return company_oid;
 	}
 
-	public void setCompany(final List<ObjectId> company_oid) {
+	public void setCompany(final ObjectId company_oid) {
 		this.company_oid = company_oid;
 	}
 
@@ -93,9 +100,13 @@ public class ServiceGodsModel {
 
 	@Override
 	public String toString() {
-		return "ServiceGodsModel [Id=" + Id + ", company_oid=" + company_oid + ", password=" + password + ", service="
-				+ service + ", service_status=" + service_status + ", user_role=" + user_role + ", username=" + username
-				+ "]";
+		try {
+			return new com.fasterxml.jackson.databind.ObjectMapper().writerWithDefaultPrettyPrinter()
+					.writeValueAsString(this);
+		} catch (final com.fasterxml.jackson.core.JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

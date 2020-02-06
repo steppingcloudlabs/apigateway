@@ -16,9 +16,11 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import com.sclabs.apigateway.TenantResolver.model.MasterModel;
 import com.sclabs.apigateway.TenantResolver.model.ServiceGodsModel;
+import com.sclabs.apigateway.TenantResolver.model.ServicesSchema;
 import com.sclabs.apigateway.TenantResolver.repository.MasterModelRepository;
 import com.sclabs.apigateway.TenantResolver.service.MasterService;
 import com.sclabs.apigateway.TenantResolver.service.ServiceGodsService;
+import com.sclabs.apigateway.TenantResolver.service.ServiceSchemaService;
 
 /*
  * This Class makes connection with Redis and Mongodb of Alpha's mongodb database.
@@ -34,10 +36,10 @@ public class TenantCredentialsFromAlpha {
 	MasterService myMasterService;
 
 	@Autowired
-	ServiceGodsService serviceService;
+	ServiceGodsService serviceGodsService;
 
 	@Autowired
-	ServiceGodsService serviceGodsService;
+	ServiceSchemaService serviceSchemaService;
 
 	/**
 	 * This function expects company name as a string and returns the document with
@@ -50,7 +52,7 @@ public class TenantCredentialsFromAlpha {
 		/**
 		 * 
 		 */
-		final List<MasterModel> tenant = myMasterService.getTenant(Companyname);
+		List<MasterModel> tenant = myMasterService.getTenant(Companyname);
 		return tenant;
 	};
 
@@ -63,11 +65,16 @@ public class TenantCredentialsFromAlpha {
 	 * 
 	 * @return _id
 	 */
-	public List<ServiceGodsModel> getService() {
+	public List<ServiceGodsModel> getService(ObjectId tenantId, String servicename) {
 		/**
 		 *
+		 *find srrvicenma e and get credentials. 
 		 */
-		final List<ServiceGodsModel> tenant2 = serviceService.getService();
+//		List<ServicesSchema> result =  serviceSchemaService.getServiceName(servicename); 
+//		System.out.println(result.get(0).getService_name());
+//		
+//		String servicePayload = result.
+		final List<ServiceGodsModel> tenant2 = serviceGodsService.getService(tenantId, servicename);
 		return tenant2;
 
 	}

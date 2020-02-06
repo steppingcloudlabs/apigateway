@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.netflix.zuul.ZuulFilter;
@@ -33,10 +34,11 @@ public class TenantResolver extends ZuulFilter {
 		String serviceName = request.getHeader("servicename");
 
 		List<MasterModel> duck = child.getTenant(companyName);
-		List<ServiceGodsModel> duck2 = child.getService();
-
-		System.out.println(duck.get(0).getService_name());
-		System.out.println(duck2);
+		ObjectId tenantId = duck.get(0).getId();
+		
+		List<ServiceGodsModel> duck2 = child.getService(tenantId, serviceName);
+		
+//		System.out.println(duck2);
 
 		return null;
 	}

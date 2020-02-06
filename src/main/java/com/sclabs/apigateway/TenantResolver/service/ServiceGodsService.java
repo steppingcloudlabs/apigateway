@@ -3,6 +3,7 @@
  */
 package com.sclabs.apigateway.TenantResolver.service;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -20,7 +21,7 @@ import com.sclabs.apigateway.TenantResolver.model.ServiceGodsModel;
 
 @Service
 public class ServiceGodsService {
-	private final MongoTemplate mongoTemplate;
+	private MongoTemplate mongoTemplate;
 
 	public ServiceGodsService(MongoTemplate mongoTemplate) {
 		super();
@@ -33,8 +34,12 @@ public class ServiceGodsService {
 	 * 
 	 * @return
 	 */
-	public List<ServiceGodsModel> getService() {
-		Query query = new Query().addCriteria(Criteria.where("service_status").is(true));
+	public List<ServiceGodsModel> getService(ObjectId tenantId, String servicename) {
+		System.out.println(tenantId);
+		System.out.println(servicename);
+		
+		Query query = new Query().addCriteria(Criteria.where("company_oid").is("5e1c219dc3dcd5907d415139").andOperator(Criteria.where("service").is("alumniportal")));
+		System.out.println(query);
 		return mongoTemplate.find(query, ServiceGodsModel.class);
 
 	}
