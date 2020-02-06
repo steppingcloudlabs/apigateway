@@ -20,7 +20,6 @@ public class ServiceGodsModel {
 
 	@Id
 	ObjectId Id;
-	@DBRef
 	String service;
 	ObjectId company_oid;
 	String username;
