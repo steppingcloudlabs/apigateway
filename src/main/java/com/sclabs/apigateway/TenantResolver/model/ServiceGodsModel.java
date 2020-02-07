@@ -25,14 +25,7 @@ public class ServiceGodsModel {
 	String username;
 	String password;
 	Boolean service_status;
-	String company_id;
-	public String getCompany_id() {
-		return company_id;
-	}
-
-	public void setCompany_id(String company_id) {
-		this.company_id = company_id;
-	}
+	
 
 	List<ObjectId> user_role;
 
