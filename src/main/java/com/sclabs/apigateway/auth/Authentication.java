@@ -1,4 +1,6 @@
-package com.sclabs.apigateway.prefilter;
+package com.sclabs.apigateway.auth;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -6,7 +8,7 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 
-public class PreFilter extends ZuulFilter{
+public class Authentication extends ZuulFilter{
 
 	@Override
 	public boolean shouldFilter() {
@@ -18,10 +20,17 @@ public class PreFilter extends ZuulFilter{
 	public Object run() throws ZuulException {
 		// TODO Auto-generated method stub
 		RequestContext ctx = RequestContext.getCurrentContext();
-	    HttpServletRequest request = ctx.getRequest();
-	 
-	    System.out.println("Request Method : " + request + " Request URL : " + request.getRequestURL().toString());
-	    return null;
+		String companyName = ctx.getZuulRequestHeaders().get("dbname");
+		String clientId = ctx.getZuulRequestHeaders().get("clientId");
+		String idpUrl = ctx.getZuulRequestHeaders().get("username");
+		String password = ctx.getZuulRequestHeaders().get("password");
+		System.out.println(companyName);
+		System.out.println(clientId);
+		System.out.println(idpUrl);
+		System.out.println(password);
+		
+		ctx.addZuulResponseHeader("password", password);
+		return ctx;
 	}
 
 	@Override
@@ -33,8 +42,7 @@ public class PreFilter extends ZuulFilter{
 	@Override
 	public int filterOrder() {
 		// TODO Auto-generated method stub
-		return 1;
+		return 10;
 	}
-	
 
 }
