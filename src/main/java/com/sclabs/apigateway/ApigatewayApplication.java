@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.sclabs.apigateway.TenantResolver.TenantResolver;
 import com.sclabs.apigateway.auth.Authentication;
+import com.sclabs.apigateway.auth.AuthenticationFilter;
 import com.sclabs.apigateway.errorfilter.ErrorFilter;
 import com.sclabs.apigateway.postfilter.PostFilter;
 import com.sclabs.apigateway.prefilter.PreFilter;
@@ -50,7 +51,7 @@ public class ApigatewayApplication {
 		return new TenantResolver();
 	}
 	@Bean
-	public Authentication authentication() {
-		return new Authentication();
+	public AuthenticationFilter authenticationFilter() {
+		return new AuthenticationFilter();
 	}
 }
